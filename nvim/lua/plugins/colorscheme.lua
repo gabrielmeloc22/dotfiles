@@ -1,15 +1,11 @@
 return {
-  {
-    "folke/tokyonight.nvim",
-    lazy = false,
-    priority = 1000,
-    config = {
-      terminal_colors = true,
-      transparent = true,
-      styles = {
-        sidebars = "transparent",
-        floats = "transparent",
-      },
-    },
-  },
+	"EdenEast/nightfox.nvim",
+	lazy = false,
+	priority = 1000,
+
+	config = function()
+		require("nightfox").setup({})
+
+		vim.cmd("colorscheme nightfox")
+	end,
 }

@@ -1,87 +1,85 @@
 return {
-  {
-    "williamboman/mason.nvim",
-    opts = function(_, opts)
-      vim.list_extend(opts.ensure_installed, {
-        "luacheck",
-        "shfmt",
-        "tailwindcss-language-server",
-        "typescript-language-server",
-        "css-lsp",
-      })
-    end,
-  },
-  {
-    "neovim/nvim-lspconfig",
-    opts = {
-      servers = {
-        cssls = {},
-        tailwindcss = {
-          root_dir = function(...)
-            return require("lspconfig.util").root_pattern(".git")(...)
-          end,
-        },
-        tsserver = {
-          root_dir = function(...)
-            return require("lspconfig.util").root_pattern(".git")(...)
-          end,
-        },
-        single_file_support = false,
-      },
-      lua_ls = {
-        single_file_support = true,
-        settings = {
-          Lua = {
-            worskspace = {
-              checkThirdParty = false,
-            },
-            completion = {
-              worskspaceWord = true,
-              callSnippet = "Both",
-            },
-          },
-        },
-      },
-      setup = {},
-    },
-  },
-  {
-    "nvim-cmp",
-    dependencies = { "hrsh7th/cmp-emoji" },
-    opts = function(_, opts)
-      local cmp = require("cmp")
+	{
+		"folke/lazydev.nvim",
+		ft = "lua", -- only load on lua files
+		opts = {
+			library = {
+				-- See the configuration section for more details
+				-- Load luvit types when the `vim.uv` word is found
+				{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
+			},
+		},
+	},
+	{
+		"williamboman/mason.nvim",
+		lazy = false,
+		config = function()
+			require("mason").setup({
+				ensure_installed = {
+					"prettier",
+					"stylua",
+				},
+			})
+		end,
+	},
+	{
+		"williamboman/mason-lspconfig.nvim",
+		lazy = false,
 
-      table.insert(opts.sources, { name = "emoji" })
-      table.insert(opts.sources, { name = "supermaven" })
+		opts = {
+			ensure_installed = {
+				"eslint",
+				"ts_ls",
+				"graphql",
+				"html",
+				"tailwindcss",
+				"cssls",
+				"bashls",
+				"lua_ls",
+				"pyright",
+				"rust_analyzer",
+				"gopls",
+			},
+		},
+	},
+	{
+		"neovim/nvim-lspconfig",
+		lazy = false,
+		opts = {
+			servers = {
+				eslint = {},
+				ts_ls = {},
+				graphql = {},
+				html = {},
+				tailwindcss = {},
+				cssls = {},
+				bashls = {},
+				lua_ls = {
+					Lua = {
+						diagnostics = {
+							globals = { "vim" },
+						},
+					},
+				},
+				pyright = {},
+				rust_analyzer = {},
+				gopls = {},
+			},
+		},
+		config = function(_, opts)
+			local lspconfig = require("lspconfig")
 
-      opts.mapping = cmp.mapping.preset.insert(vim.tbl_deep_extend("force", opts.mapping, {
-        ["<C-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-        ["<C-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
-        ["<Tab>"] = cmp.mapping.confirm({ select = true }),
-      }))
-    end,
-  },
-  {
-    "supermaven-inc/supermaven-nvim",
-    config = function()
-      require("supermaven-nvim").setup({
-        disable_keymaps = true,
-      })
+			for server, config in pairs(opts.servers) do
+				config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
+				lspconfig[server].setup(config)
+			end
 
-      local completion_preview = require("supermaven-nvim.completion_preview")
-
-      vim.keymap.set(
-        "i",
-        "<Tab>",
-        completion_preview.on_accept_suggestion,
-        { noremap = true, silent = true, desc = "Accept supermaven suggestion" }
-      )
-      vim.keymap.set(
-        "i",
-        "<C-J>", -- Ctrl + Enter
-        completion_preview.on_accept_suggestion_word,
-        { noremap = true, silent = true, desc = "Accept supermaven word suggestion" }
-      )
-    end,
-  },
+			vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Hover symbol" })
+			vim.keymap.set("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Show line diagnostics" })
+			vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, { desc = "Go to definition" })
+			vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, { desc = "Find references" })
+			vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code action" })
+			vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, { desc = "Rename" })
+		end,
+	},
 }
