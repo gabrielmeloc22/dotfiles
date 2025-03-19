@@ -1,11 +1,12 @@
 return {
-	"EdenEast/nightfox.nvim",
+	"scottmckendry/cyberdream.nvim",
 	lazy = false,
 	priority = 1000,
-
 	config = function()
-		require("nightfox").setup({})
+		require("cyberdream").setup({
+			transparent = true,
+		})
 
-		vim.cmd("colorscheme nightfox")
+		vim.cmd("colorscheme cyberdream")
 	end,
 }

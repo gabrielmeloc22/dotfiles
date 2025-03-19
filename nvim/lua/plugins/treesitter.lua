@@ -1,13 +1,20 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
+	version = false, -- last release is way too old and doesn't work on Windows
 	build = ":TSUpdate",
-	lazy = vim.fn.argc(-1) == 0, -- load treesitter early when opening a file from the cmdline
+	event = { "VeryLazy" },
+	lazy = vim.fn.argc(-1) == 0,
+
 	cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
 	keys = {
 		{ "<C-space>", desc = "Increment Selection" },
 		{ "<C-S-space>", desc = "Decrement Selection", mode = "x" },
 	},
+
+	opts_extend = { "ensure_installed" },
 	opts = {
+		highlight = { enable = true },
+		indent = { enable = true },
 		ensure_installed = {
 			"bash",
 			"comment",
@@ -23,7 +30,6 @@ return {
 			"toml",
 			"typescript",
 			"yaml",
-			"golang",
 			"python",
 			"rust",
 			"java",
@@ -31,8 +37,6 @@ return {
 			"graphql",
 		},
 		auto_install = true,
-		highlight = { enable = true },
-		indent = { enable = true },
 		incremental_selection = {
 			enable = true,
 			keymaps = {
@@ -43,4 +47,7 @@ return {
 			},
 		},
 	},
+	config = function(_, opts)
+		require("nvim-treesitter.configs").setup(opts)
+	end,
 }

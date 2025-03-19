@@ -18,6 +18,7 @@ return {
 				ensure_installed = {
 					"prettier",
 					"stylua",
+					"autopep8",
 				},
 			})
 		end,
@@ -30,6 +31,7 @@ return {
 			ensure_installed = {
 				"eslint",
 				"ts_ls",
+				"yamlls",
 				"graphql",
 				"html",
 				"tailwindcss",
@@ -39,6 +41,7 @@ return {
 				"pyright",
 				"rust_analyzer",
 				"gopls",
+				"nil_ls",
 			},
 		},
 	},
@@ -64,6 +67,12 @@ return {
 				pyright = {},
 				rust_analyzer = {},
 				gopls = {},
+				yamlls = {},
+				nil_ls = {
+					formatting = {
+						command = { "nixfmt" },
+					},
+				},
 			},
 		},
 		config = function(_, opts)
@@ -74,10 +83,11 @@ return {
 				lspconfig[server].setup(config)
 			end
 
+			vim.keymap.set("n", "<leader>co", function() end, { desc = "Show all code actions" })
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Hover symbol" })
 			vim.keymap.set("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Show line diagnostics" })
-			vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, { desc = "Go to definition" })
-			vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, { desc = "Find references" })
+			vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
+			vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "Find references" })
 			vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code action" })
 			vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, { desc = "Rename" })
 		end,

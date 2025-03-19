@@ -9,8 +9,6 @@ vim.g.loaded_netrwPlugin = 1
 
 vim.g.mapleader = " "
 
-opt.guicursor = ""
-
 opt.number = true
 opt.rnu = true
 
@@ -19,7 +17,7 @@ opt.softtabstop = 2
 opt.shiftwidth = 2
 opt.expandtab = true
 
-opt.wrap = false
+opt.wrap = true
 
 opt.smartindent = true
 

@@ -20,6 +20,7 @@ return {
 						i = {
 							["<C-j>"] = actions.move_selection_next,
 							["<C-k>"] = actions.move_selection_previous,
+							["<C-x>"] = actions.delete_buffer,
 						},
 					},
 				},
@@ -37,10 +38,12 @@ return {
 
 			telescope.load_extension("ui-select")
 			telescope.load_extension("undo")
+			telescope.load_extension("fzf")
 
 			vim.keymap.set("n", "<leader>u", "<cmd>Telescope undo<cr>", { desc = "Telescope undo tree" })
 
 			vim.keymap.set("n", "<leader>fa", builtin.find_files, { desc = "Telescope find files" })
+
 			vim.keymap.set("n", "<leader>ff", function()
 				local util = require("config.util")
 				local git_root = util.get_git_root()

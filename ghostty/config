@@ -1,3 +1,10 @@
 font-family = "JetBrainsMono Nerd Font"
 font-size = 13.5
 adjust-cell-height = 4
+background-opacity = 0.9
+theme = cyberdream
+background-blur = true
+macos-option-as-alt = left
+
+keybind = alt+left=unbind
+keybind = alt+right=unbind

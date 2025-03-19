@@ -7,10 +7,24 @@ return {
 		---@module 'blink.cmp'
 		---@type blink.cmp.Config
 		opts = {
+			completion = {
+				documentation = {
+					auto_show = true,
+				},
+				menu = {
+					auto_show = function(ctx)
+						return ctx.mode ~= "cmdline"
+					end,
+					draw = {
+						treesitter = { "lsp" },
+					},
+				},
+			},
 			keymap = {
 				preset = "default",
 				["<C-k>"] = { "select_prev", "fallback" },
 				["<C-j>"] = { "select_next", "fallback" },
+				["<Tab>"] = { "select_and_accept", "fallback" },
 				["<CR>"] = { "select_and_accept", "fallback" },
 				["<Esc>"] = { "cancel", "fallback" },
 			},

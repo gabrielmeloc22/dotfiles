@@ -22,6 +22,7 @@ return {
 			lua = { "stylua" },
 			python = { "isort", "black" },
 			javascript = { "prettier", stop_after_first = true },
+			yaml = { "prettier" },
 		},
 		default_format_opts = {
 			lsp_format = "fallback",
