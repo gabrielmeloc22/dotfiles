@@ -4,3 +4,6 @@
 !tmux
 !ghostty
 !.gitignore
+
+./tmux/plugins
+
