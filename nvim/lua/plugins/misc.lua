@@ -1,24 +1,19 @@
 return {
 	{
 		"lukas-reineke/indent-blankline.nvim",
+		enabled = true,
+		event = "BufReadPre",
 		main = "ibl",
-		config = function()
-			local hooks = require("ibl.hooks")
-			local ibl = require("ibl")
-
-			ibl.setup({
-				indent = {
-					char = "▏", -- This is a slightly thinner char than the default one, check :help ibl.config.indent.char
-				},
-				scope = {
-					show_start = false,
-					show_end = false,
-				},
-			})
-
-			hooks.register(hooks.type.WHITESPACE, hooks.builtin.hide_first_space_indent_level)
-			hooks.register(hooks.type.WHITESPACE, hooks.builtin.hide_first_tab_indent_level)
-		end,
+		opts = {
+			indent = {
+				char = "▏",
+				highlight = { "IblIndent" },
+			},
+			scope = {
+				show_start = false,
+				show_end = false,
+			},
+		},
 	},
 	{
 		"stevearc/dressing.nvim",
@@ -35,15 +30,6 @@ return {
 		version = "*",
 		event = "VeryLazy",
 		config = {},
-	},
-	{
-		"nvim-lualine/lualine.nvim",
-		dependencies = { "nvim-tree/nvim-web-devicons" },
-		opts = {
-			sections = {
-				lualine_c = { "%f" },
-			},
-		},
 	},
 	{
 		"supermaven-inc/supermaven-nvim",
@@ -74,10 +60,35 @@ return {
 	{
 		"folke/noice.nvim",
 		event = "VeryLazy",
-		opts = {},
+		opts = {
+			presets = {
+				command_palette = true,
+			},
+		},
+		keys = {
+			{ "<leader>ch", ":Noice history<cr>", desc = "See notification history", silent = true },
+		},
 		dependencies = {
 			"MunifTanjim/nui.nvim",
-			"rcarriga/nvim-notify",
 		},
+	},
+	{
+		"luukvbaal/statuscol.nvim",
+		config = function()
+			require("statuscol").setup({
+				relculright = true,
+			})
+		end,
+	},
+	{
+		"norcalli/nvim-colorizer.lua",
+		config = function()
+			require("colorizer").setup()
+		end,
+	},
+	{
+		"windwp/nvim-autopairs",
+		event = "InsertEnter",
+		config = true,
 	},
 }

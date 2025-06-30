@@ -5,5 +5,5 @@
 !ghostty
 !.gitignore
 
-./tmux/plugins
+tmux/plugins
 

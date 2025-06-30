@@ -47,10 +47,14 @@ return {
 		event = "VeryLazy",
 		keys = {
 			{ "<leader>gd", ":Gdiffsplit<cr>", desc = "Open buffer split diff" },
-			{ "<leader>gs", ":tab Git<cr>", desc = "Open git status" },
+			{ "<leader>gc", ":Gvdiffsplit!<cr>", desc = "Open three-way diff view" },
+			{ "<leader>gs", ":Gedit :<cr>", desc = "Open git status" },
 			{ "<leader>gb", ":Git blame<cr>", desc = "Open current buffer blame" },
 			{ "<leader>gr", ":GBrowse<cr>", desc = "Open git file in the browser" },
-			{ "<leader>gl", ":0Gclog<cr>", desc = "Open file buffer past revisions" },
+			{ "<leader>gq", ":0Gclog<cr>", desc = "Open file buffer past revisions" },
+			{ "<leader>gl", ":rightbelow vertical Git log<cr>", desc = "Open git log" },
+			{ "<leader>al", ":diffget //2<cr>", desc = "Accept from left below the cursor" },
+			{ "<leader>ar", ":diffget //3<cr>", desc = "Accept from left below the cursor" },
 		},
 	},
 	{

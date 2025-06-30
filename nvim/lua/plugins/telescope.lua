@@ -60,6 +60,8 @@ return {
 			vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Telescope buffers" })
 			vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Telescope help tags" })
 			vim.keymap.set("n", "<leader>fk", builtin.keymaps, { desc = "Telescope list keymaps" })
+
+			vim.keymap.set("n", "<leader>fs", builtin.git_status, { desc = "Telescope list keymaps" })
 		end,
 	},
 }

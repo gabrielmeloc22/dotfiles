@@ -3,6 +3,17 @@ return {
 	event = "VeryLazy",
 	---@type Flash.Config
 	opts = {},
+	config = function()
+		require("flash").setup({
+			highlight = {
+				groups = {
+					match = "@diff.plus", -- non‑current matches
+					current = "@comment.todo", -- the one under the cursor
+					label = "AvanteSubtitle", -- the jump labels
+				},
+			},
+		})
+	end,
 	keys = {
 		{
 			"s",
@@ -11,14 +22,6 @@ return {
 				require("flash").jump()
 			end,
 			desc = "Flash",
-		},
-		{
-			"S",
-			mode = { "n", "x", "o" },
-			function()
-				require("flash").treesitter()
-			end,
-			desc = "Flash Treesitter",
 		},
 	},
 }

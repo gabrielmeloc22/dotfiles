@@ -38,3 +38,5 @@ opt.termguicolors = true
 
 opt.scrolloff = 8
 opt.updatetime = 750
+
+vim.opt.fillchars = { eob = " " }
