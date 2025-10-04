@@ -40,6 +40,7 @@ return {
 		"mason-org/mason-lspconfig.nvim",
 		dependencies = {
 			"neovim/nvim-lspconfig",
+			"b0o/schemastore.nvim",
 			{ "mason-org/mason.nvim", opts = {} },
 		},
 		config = function()
@@ -115,6 +116,12 @@ return {
 				pyright = {},
 				rust_analyzer = {},
 				gopls = {},
+				jsonls = {
+					json = {
+						schemas = require("schemastore").json.schemas(),
+						validate = { enable = true },
+					},
+				},
 				yamlls = {},
 				buf_ls = {},
 				lua_ls = {
@@ -170,12 +177,19 @@ return {
 				["<C-u>"] = { "scroll_documentation_up", "fallback" },
 				["<C-d>"] = { "scroll_documentation_down", "fallback" },
 				["<CR>"] = { "select_and_accept", "fallback" },
-				["<Tab>"] = { "select_and_accept", "fallback" },
 			},
 			appearance = {
 				nerd_font_variant = "mono",
 			},
 			completion = {
+				menu = {
+					draw = {
+						columns = {
+							{ "label", "label_description" },
+							{ "kind_icon", "kind", gap = 2 },
+						},
+					},
+				},
 				documentation = {
 					auto_show = true,
 				},

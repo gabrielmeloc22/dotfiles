@@ -15,6 +15,12 @@ return {
 			local actions = require("telescope.actions")
 
 			telescope.setup({
+				pickers = {
+					find_files = {
+						file_ignore_patterns = { "node_modules", "dist", ".venv", ".git" },
+						hidden = true,
+					},
+				},
 				defaults = {
 					mappings = {
 						i = {
@@ -48,12 +54,7 @@ return {
 				local util = require("config.util")
 				local git_root = util.get_git_root()
 
-				if git_root ~= nil then
-					builtin.find_files()
-					return
-				end
-
-				builtin.find_files({ cwd = git_root })
+				builtin.find_files()
 			end, { desc = "Telescope find git files" })
 
 			vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Telescope live grep" })

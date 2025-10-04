@@ -30,6 +30,7 @@ vim.keymap.set("n", "N", "Nzzzv", { desc = "Previous search match centralized" }
 vim.keymap.set("n", "<leader>d", '"_d', { desc = "Delete to void register" })
 
 vim.keymap.set("n", "<Leader>s", "<cmd>w<CR>", { silent = true, desc = "Save file" })
+vim.keymap.set("n", "<Leader>S", "<cmd>noautocmd w<CR>", { silent = true, desc = "Save file without autocmd" })
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { silent = true, desc = "Move selection upwards" })
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { silent = true, desc = "Move selection downwards" })
