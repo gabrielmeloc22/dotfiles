@@ -131,26 +131,13 @@ return {
 						},
 					},
 				},
-				nil_ls = {
-					formatting = {
-						command = { "nixfmt" },
-					},
-				},
 			}
 
-			local capabilities = vim.lsp.protocol.make_client_capabilities()
 			local server_names = vim.tbl_keys(servers)
-			local lspconfig = require("lspconfig")
 
 			for server, settings in pairs(servers) do
-				local on_attach = settings.on_attach
-				settings.on_attach = nil
-
-				lspconfig[server].setup({
-					on_attach = on_attach,
-					capabilities = capabilities,
-					settings = settings,
-				})
+				vim.lsp.enable(server)
+				vim.lsp.config(server, settings)
 			end
 
 			require("mason-lspconfig").setup({
