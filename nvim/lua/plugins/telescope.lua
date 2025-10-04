@@ -51,9 +51,6 @@ return {
 			vim.keymap.set("n", "<leader>fa", builtin.find_files, { desc = "Telescope find files" })
 
 			vim.keymap.set("n", "<leader>ff", function()
-				local util = require("config.util")
-				local git_root = util.get_git_root()
-
 				builtin.find_files()
 			end, { desc = "Telescope find git files" })
 
