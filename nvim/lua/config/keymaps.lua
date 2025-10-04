@@ -35,6 +35,9 @@ vim.keymap.set("n", "<Leader>S", "<cmd>noautocmd w<CR>", { silent = true, desc =
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { silent = true, desc = "Move selection upwards" })
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { silent = true, desc = "Move selection downwards" })
 
+vim.keymap.set("v", ">", ">gv", { silent = true, desc = "Indent text right" })
+vim.keymap.set("v", "<", "<gv", { silent = true, desc = "Indent text left" })
+
 vim.keymap.set("x", "<leader>p", '"_dP', { desc = "Paste without losing clipboard" })
 
 vim.keymap.set("n", "<leader>df", "<cmd>e ~/.config/nvim/<CR>", { desc = "Open config files" })
