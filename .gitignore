@@ -5,7 +5,8 @@
 !ghostty
 !.gitignore
 !opencode
-!zsh
+!zsh/.zprofile
+!zsh/.zshrc
 !oh-my-zsh
 
 tmux/plugins
