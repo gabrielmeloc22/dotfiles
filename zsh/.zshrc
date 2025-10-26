@@ -4,7 +4,6 @@ export ZSH="$HOME/.oh-my-zsh"
 
 ZSH_THEME="alanpeabody"
 
-
 HIST_STAMPS="mm/dd/yyyy"
 
 ZSH_CUSTOM=~/.config/oh-my-zsh/
