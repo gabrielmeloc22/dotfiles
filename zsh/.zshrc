@@ -22,3 +22,8 @@ export NODE_PATH=$NODE_PATH:`npm root -g`
 
 export PATH="/opt/homebrew/opt/mysql@8.0/bin:$PATH"
 export PATH="$PATH:$(go env GOPATH)/bin"
+export PATH="$HOME/.local/bin:$PATH"
+export NODE_EXTRA_CA_CERTS="$(mkcert -CAROOT)/rootCA.pem"
+
+export TMPDIR=$HOME/.tmp
+
