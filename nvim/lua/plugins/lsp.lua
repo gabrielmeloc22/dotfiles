@@ -30,6 +30,7 @@ return {
 					"shellcheck",
 					"shfmt",
 					"prettierd",
+					"sql-formatter",
 				},
 				run_on_start = true,
 				auto_update = true,
@@ -124,6 +125,7 @@ return {
 				},
 				yamlls = {},
 				buf_ls = {},
+				clangd = {},
 				lua_ls = {
 					Lua = {
 						diagnostics = {
@@ -145,6 +147,13 @@ return {
 				automatic_enable = false,
 			})
 		end,
+	},
+	{
+		"seblyng/roslyn.nvim",
+		ft = "cs",
+		---@module 'roslyn.config'
+		---@type RoslynNvimConfig
+		opts = {},
 	},
 	{
 		"saghen/blink.cmp",

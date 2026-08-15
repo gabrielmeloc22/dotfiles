@@ -1,5 +1,8 @@
 local opt = vim.opt
 
+vim.o.background = "dark"
+opt.termguicolors = true
+
 -- keep status line always on the bottom
 vim.o.laststatus = 3
 
@@ -33,8 +36,6 @@ opt.undodir = os.getenv("HOME") .. "/.nvim/undodir"
 opt.undofile = true
 
 opt.hlsearch = false
-
-opt.termguicolors = true
 
 opt.scrolloff = 8
 opt.updatetime = 750

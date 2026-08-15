@@ -56,6 +56,26 @@ return {
 			{ "<leader>al", ":diffget //2<cr>", desc = "Accept from left below the cursor" },
 			{ "<leader>ar", ":diffget //3<cr>", desc = "Accept from left below the cursor" },
 		},
+		init = function()
+			vim.api.nvim_create_autocmd("FileType", {
+				pattern = "fugitive",
+				callback = function(event)
+					vim.keymap.del("n", "-", { buffer = event.buf })
+
+					vim.keymap.set("n", "gP", ":Git stash pop<CR>", { buffer = true })
+					vim.keymap.set("n", "gp", function()
+						local line = vim.api.nvim_get_current_line()
+						-- Extract the filepath (everything after the status indicator)
+						local file = line:match("^%s*%S+%s+(.+)$")
+						if file then
+							vim.cmd("Git stash push -- " .. vim.fn.fnameescape(file))
+						else
+							print("No file found on current line")
+						end
+					end, { buffer = true })
+				end,
+			})
+		end,
 	},
 	{
 		"tpope/vim-rhubarb",

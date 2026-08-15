@@ -21,7 +21,7 @@ return {
 			"html",
 			"javascript",
 			"jsdoc",
-			"jsonc",
+			"json",
 			"lua",
 			"markdown",
 			"regex",

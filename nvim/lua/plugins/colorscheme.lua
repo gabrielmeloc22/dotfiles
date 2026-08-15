@@ -1,20 +1,24 @@
 return {
-	"rose-pine/neovim",
-	name = "rose-pine",
+	"vague-theme/vague.nvim",
 	lazy = false,
+	priority = 1000,
 	config = function()
-		require("rose-pine").setup({
-			variant = "main",
-			dark_variant = "main",
-			dim_inactive_windows = false,
-			extend_background_behind_borders = true,
-
-			styles = {
-				italic = false,
-				transparency = true,
+		require("vague").setup({
+			transparent = true,
+			style = {
+				boolean = "none",
+				number = "none",
+				float = "none",
+				error = "none",
+				comments = "italic",
+				conditionals = "none",
+				functions = "none",
+				headings = "bold",
+				operators = "none",
+				strings = "none",
+				variables = "none",
 			},
 		})
-
-		vim.cmd("colorscheme rose-pine") -- setting
+		vim.cmd.colorscheme("vague")
 	end,
 }

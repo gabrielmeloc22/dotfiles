@@ -32,14 +32,6 @@ return {
 		config = {},
 	},
 	{
-		"supermaven-inc/supermaven-nvim",
-		opts = {},
-		keys = {
-			{ "<leader>cc", "<cmd>SupermavenStart<cr>", desc = "Start supermaven completion" },
-			{ "<leader>cC", "<cmd>SupermavenStop<cr>", desc = "Stop supermaven completion" },
-		},
-	},
-	{
 		"christoomey/vim-tmux-navigator",
 		cmd = {
 			"TmuxNavigateLeft",
